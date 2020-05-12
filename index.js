@@ -13,12 +13,17 @@ console.log('funguju!');
           Nakoupit na víkend
         </div>*/
 
+
+
+
 let tasks = [
   "nezvtekat se u javascriptu",
   "dodělat ještě další úkol k HTML/CSS",
   "uklidit celkově",
   "nakoupit jídlo"
 ];
+
+
 
 
 
@@ -31,11 +36,19 @@ const updateTasks = () => {
   }
 };
 
+updateTasks(); /*zavolám fci, aby se zobrazily již zapsané a přednastavené položky */
+
 const addItem = () => {
   const newTaskElm = document.querySelector("#new-task");
   const text = newTaskElm.value;
-  tasks.push(text);
-  updateTasks(); /*nutné přidat!, jinak se po kliknutí na + nic nezobrazí*/
+  if (text !== " ") {
+    tasks.push(text);
+    newTaskElm.value = ""; /*po zapsání položky do pole, zmizí text z lišty*/
+  } else {
+    alert("Zapomněl(a) jsi zapsat úkol.");
+  }
+
+  updateTasks();/*nutné přidat!, jinak se po kliknutí na + nic nezobrazí*/
 };
 
 const btnElm = document.querySelector(".btn-add");
