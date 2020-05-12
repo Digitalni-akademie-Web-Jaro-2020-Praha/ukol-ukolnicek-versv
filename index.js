@@ -41,8 +41,10 @@ updateTasks(); /*zavolám fci, aby se zobrazily již zapsané a přednastavené 
 const addItem = () => {
   const newTaskElm = document.querySelector("#new-task");
   const text = newTaskElm.value;
-  if (text !== " ") {
-    tasks.push(text);
+  const textb = text.trim(); /* zajistí, aby se nezapisovala ani prázdná hodnota do pole*/
+
+  if (textb !== "") {
+    tasks.push(textb);
     newTaskElm.value = ""; /*po zapsání položky do pole, zmizí text z lišty*/
   } else {
     alert("Zapomněl(a) jsi zapsat úkol.");
@@ -53,4 +55,8 @@ const addItem = () => {
 
 const btnElm = document.querySelector(".btn-add");
 btnElm.addEventListener("click", addItem); /* po kliknutí na + se nový úkol přidá do pole - viz výše*/
-
+document.addEventListener('keyup', (event) => {
+  if (event.keyCode === 13) {
+    addItem();
+  }
+}); /* aby se úkol zapsal i po stisknutí klávesy Enter*/
